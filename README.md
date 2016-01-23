@@ -1,8 +1,8 @@
-# RKTMan
+# RktMan
 :rocket: *It's all the science I don't understand*
 
 ## Introduction
-Control all your RKT containers via a friendly Ruby API.
+Control all your rkt containers via a friendly Ruby API.
 
 ## Dependencies
   * gem install google-protobuf --pre
