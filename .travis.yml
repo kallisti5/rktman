@@ -1,0 +1,14 @@
+language: ruby
+sudo: false
+rvm:
+  - 2.3.0
+  - 2.2.4
+  - 1.9.3
+before_script:
+  - gem install google-protobuf --pre
+  - gem install grpc
+
+script: "rake test"
+
+notifications:
+  email: false
