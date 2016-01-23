@@ -1,6 +1,8 @@
 # RktMan
 :rocket: *It's all the science I don't understand*
 
+[![Build Status](https://travis-ci.org/kallisti5/rktman.svg?branch=master)](https://travis-ci.org/kallisti5/rktman)
+
 ## Introduction
 Control all your rkt containers via a friendly Ruby API.
 
