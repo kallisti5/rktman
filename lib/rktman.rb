@@ -8,16 +8,22 @@ require "pp"
 class RktMan
   attr_accessor :host, :port
 
-  def initialize
-    # set defaults
-    @host = "localhost"
-    @port = 15441
+  def initialize(host = "localhost", port = 15441)
+    @host = host
+    @port = port
+    @stub = V1alpha::PublicAPI::Stub.new("#{@host}:#{@port}", :this_channel_is_insecure)
   end
 
   def version
-    stub = V1alpha::PublicAPI::Stub.new("#{@host}:#{@port}", :this_channel_is_insecure)
     request = V1alpha::Info.new()
-    response = stub.get_info(request)
+    response = @stub.get_info(request)
     response.info['rkt_version']
+  end
+
+  def network
+    request = V1alpha::Network.new()
+    pp request
+    response = @stub.get_response(request)
+    pp response
   end
 end
