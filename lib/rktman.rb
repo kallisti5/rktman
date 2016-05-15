@@ -8,9 +8,9 @@ require "pp"
 class RktMan
   attr_accessor :host, :port
 
-  def initialize(host = "localhost", port = 15441)
-    @host = host
-    @port = port
+  def initialize(arguments = {})
+    @host = arguments.fetch('host', 'localhost')
+    @port = arguments.fetch('port', 15441)
     @stub = V1alpha::PublicAPI::Stub.new("#{@host}:#{@port}", :this_channel_is_insecure)
   end
 
