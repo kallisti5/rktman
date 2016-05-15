@@ -38,6 +38,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :networks, :message, 5, "v1alpha.Network"
     optional :manifest, :bytes, 6
     repeated :annotations, :message, 7, "v1alpha.KeyValue"
+    optional :cgroup, :string, 8
+    optional :created_at, :int64, 9
+    optional :started_at, :int64, 10
+    optional :gc_marked_at, :int64, 11
   end
   add_message "v1alpha.KeyValue" do
     optional :Key, :string, 1
@@ -50,6 +54,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :image_ids, :string, 4
     repeated :network_names, :string, 5
     repeated :annotations, :message, 6, "v1alpha.KeyValue"
+    repeated :cgroups, :string, 7
+    repeated :pod_sub_cgroups, :string, 8
   end
   add_message "v1alpha.ImageFilter" do
     repeated :ids, :string, 1
@@ -62,10 +68,19 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :annotations, :message, 8, "v1alpha.KeyValue"
     repeated :full_names, :string, 9
   end
+  add_message "v1alpha.GlobalFlags" do
+    optional :dir, :string, 1
+    optional :system_config_dir, :string, 2
+    optional :local_config_dir, :string, 3
+    optional :user_config_dir, :string, 4
+    optional :insecure_flags, :string, 5
+    optional :trust_keys_from_https, :bool, 6
+  end
   add_message "v1alpha.Info" do
     optional :rkt_version, :string, 1
     optional :appc_version, :string, 2
     optional :api_version, :string, 3
+    optional :global_flags, :message, 4, "v1alpha.GlobalFlags"
   end
   add_message "v1alpha.Event" do
     optional :type, :enum, 1, "v1alpha.EventType"
@@ -174,6 +189,7 @@ module V1alpha
   KeyValue = Google::Protobuf::DescriptorPool.generated_pool.lookup("v1alpha.KeyValue").msgclass
   PodFilter = Google::Protobuf::DescriptorPool.generated_pool.lookup("v1alpha.PodFilter").msgclass
   ImageFilter = Google::Protobuf::DescriptorPool.generated_pool.lookup("v1alpha.ImageFilter").msgclass
+  GlobalFlags = Google::Protobuf::DescriptorPool.generated_pool.lookup("v1alpha.GlobalFlags").msgclass
   Info = Google::Protobuf::DescriptorPool.generated_pool.lookup("v1alpha.Info").msgclass
   Event = Google::Protobuf::DescriptorPool.generated_pool.lookup("v1alpha.Event").msgclass
   EventFilter = Google::Protobuf::DescriptorPool.generated_pool.lookup("v1alpha.EventFilter").msgclass
