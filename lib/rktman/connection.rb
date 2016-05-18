@@ -5,11 +5,12 @@ require 'pp'
 
 module RktMan
   class Connection
-    attr_accessor :endpoint
+    attr_accessor :endpoint, :port
 
     def initialize(attributes = {})
-      @endpoint = attributes.fetch(:endpoint, "http://localhost:15441")
-      @stub = V1alpha::PublicAPI::Stub.new(@endpoint, :this_channel_is_insecure)
+      @endpoint = attributes.fetch(:endpoint, "localhost")
+      @port = attributes.fetch(:port, 15441)
+      @stub = V1alpha::PublicAPI::Stub.new("#{@endpoint}:#{@port}", :this_channel_is_insecure)
     end
     
     def version
