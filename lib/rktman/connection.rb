@@ -6,6 +6,8 @@ require 'pp'
 module RktMan
   class Connection
     attr_accessor :endpoint, :port
+    attr_accessor :stub
+      # for debugging
 
     def initialize(attributes = {})
       @endpoint = attributes.fetch(:endpoint, "localhost")
@@ -18,11 +20,10 @@ module RktMan
       response = @stub.get_info(request)
       response.info['rkt_version']
     end
-    
-    def network
-      request = V1alpha::Network.new()
-      pp request
-      response = @stub.get_network(request)
+
+    def images
+      request = V1alpha::Image.new()
+      response = @stub.list_images(request)
       pp response
     end
   end
