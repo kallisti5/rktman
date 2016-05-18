@@ -1,15 +1,12 @@
-require "rake/testtask"
+require "bundler/gem_tasks"
+require "rspec/core/rake_task"
 
 desc "Open an irb session preloaded with this library"
 task :console do
   sh "irb -rubygems -I lib -r rktman.rb"
 end
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << "test"
-  t.libs << "lib"
-  t.test_files = FileList['test/**/*_test.rb']
-end
+RSpec::Core::RakeTask.new(:spec)
 
-desc 'Default: run tests'
-task :default => [:test]
+task :default => :spec
+

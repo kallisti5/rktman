@@ -23,7 +23,7 @@ class RktMan
   def network
     request = V1alpha::Network.new()
     pp request
-    response = @stub.get_response(request)
+    response = @stub.get_network(request)
     pp response
   end
 end
