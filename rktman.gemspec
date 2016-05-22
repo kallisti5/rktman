@@ -19,8 +19,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "grpc"
-  spec.add_dependency "google-protobuf"
+  spec.add_runtime_dependency 'grpc', '~> 0'
+  spec.add_runtime_dependency 'google-protobuf', '~> 0'
 
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"

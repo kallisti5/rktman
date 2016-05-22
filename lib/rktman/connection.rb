@@ -1,8 +1,6 @@
 require 'api'
 require 'api_services'
 
-require 'pp'
-
 module RktMan
   class Connection
     attr_accessor :endpoint, :port
@@ -23,8 +21,7 @@ module RktMan
 
     def images
       request = V1alpha::Image.new()
-      response = @stub.list_images(request)
-      pp response
+      @stub.list_images(request).images.map {|attr| RktMan::Image.new(attr)}
     end
   end
 end
