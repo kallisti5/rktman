@@ -6,7 +6,7 @@ rvm:
   - 2.1.8
 before_script:
   - gem install rake
-  - gem install minitest
+  - gem install rspec
   - gem install google-protobuf --pre
   - gem install grpc
 
