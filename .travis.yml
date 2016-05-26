@@ -10,7 +10,7 @@ before_script:
   - gem install google-protobuf --pre
   - gem install grpc
 
-script: "rake test"
+script: "rspec"
 
 notifications:
   email: false
